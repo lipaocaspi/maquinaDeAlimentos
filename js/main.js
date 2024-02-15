@@ -25,13 +25,13 @@ function realizarCompra (precio) {
         vuelto = suma - precio;
         do {
             if (vuelto >= Number(monedas[2])) {
-                alert(`Su vuelto : ${monedas[2]}`);
+                alert(`Su vuelto : $${monedas[2]}`);
                 vuelto = vuelto - Number(monedas[2]);
             } else if (vuelto >= Number(monedas[1])) {
-                alert(`Su vuelto : ${monedas[1]}`);
+                alert(`Su vuelto : $${monedas[1]}`);
                 vuelto = vuelto - Number(monedas[1]);
             } else if (vuelto >= Number(monedas[0])) {
-                alert(`Su vuelto : ${monedas[0]}`);
+                alert(`Su vuelto : $${monedas[0]}`);
                 vuelto = vuelto - Number(monedas[0]);
             }
         } while (vuelto >= Number(monedas[0]));
