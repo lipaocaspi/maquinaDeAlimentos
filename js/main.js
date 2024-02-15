@@ -5,36 +5,63 @@
 let productos = ["A", "B", "C"];
 let precios = ["270", "340", "390"];
 let monedas = ["10", "50", "100"];
-
+let suma = 0;
+let vuelto = 0;
 let opcion;
 
 function realizarCompra (precio) {
-    confirm(precio);
+    while (suma < precio) {
+        const moneda = prompt(`Ingrese la moneda (${monedas[0]}, ${monedas[1]} o ${monedas[2]})`);
+        if (monedas.includes(moneda)) {
+            suma = suma + Number(moneda);
+        }
+        else {
+            alert("No es un valor válido");
+        }
+    }
+    if (suma == precio) {
+        alert("No hay vuelto");
+    } else {
+        vuelto = suma - precio;
+        do {
+            if (vuelto >= Number(monedas[2])) {
+                alert(`Su vuelto : ${monedas[2]}`);
+                vuelto = vuelto - Number(monedas[2]);
+            } else if (vuelto >= Number(monedas[1])) {
+                alert(`Su vuelto : ${monedas[1]}`);
+                vuelto = vuelto - Number(monedas[1]);
+            } else if (vuelto >= Number(monedas[0])) {
+                alert(`Su vuelto : ${monedas[0]}`);
+                vuelto = vuelto - Number(monedas[0]);
+            }
+        } while (vuelto >= Number(monedas[0]));
+    }
+    suma = 0;
+    vuelto = 0;
 }
 
 do {
     opcion = prompt(`DISPENSADORA DE ALIMENTOS
-        Seleccione un producto:
-        1. ${productos[0]} - $${precios[0]}
-        2. ${productos[1]} - $${precios[1]}
-        3. ${productos[2]} - $${precios[2]}
-        4. Salir`);
+        Seleccione un producto :
+        A. Producto ${productos[0]} - $${precios[0]}
+        B. Producto ${productos[1]} - $${precios[1]}
+        C. Producto ${productos[2]} - $${precios[2]}
+        0. Salir`).toUpperCase();
 
         switch (opcion) {
-            case '1':
+            case 'A':
                 realizarCompra(Number(precios[0]))
                 break;
-            case '2':
+            case 'B':
                 realizarCompra(Number(precios[1]))
                 break;
-            case '3':
+            case 'C':
                 realizarCompra(Number(precios[2]))
                 break;
-            case '4':
-                confirm("Gracias por usar nuestro servicio");
+            case '0':
+                alert("Gracias por usar nuestro servicio");
                 break;
             default:
-                confirm("Opción no válida. Intente de nuevo.");
+                alert("Opción no válida. Intente de nuevo.");
         }
-
-} while (opcion !== '4')
+} while (opcion !== '0')
